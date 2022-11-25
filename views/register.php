@@ -9,17 +9,17 @@
                 <p class="p-6 max-w-md mx-auto text-center bg-red-300 rounded-xl flex">Something went wrong</p>
             </div> -->
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="text" name="fname"
-            id="" placeholder="First Name" autocomplete="off" required>
+            id="" placeholder="First Name" autocomplete="off" >
         <input class="p-5 min-w-full mx-0 bg-yellow-100 rounded-xl flex items-center text-md" type="text" name="lname"
-            id="" placeholder="Last Name" autocomplete="off" required>
+            id="" placeholder="Last Name" autocomplete="off" >
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="email" name="email"
-            id="" placeholder="Email" autocomplete="off" required>
+            id="" placeholder="Email" autocomplete="off" >
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="password"
-            name="password" id="" placeholder="Password" autocomplete="off" required>
+            name="password" id="" placeholder="Password" autocomplete="off" >
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="password"
-            name="password" id="" placeholder="Confirm password" autocomplete="off" required>
-        <button class="p-3 min-w-full mx-auto text-2xl font-bold text-center bg-amber-300 rounded-xl shadow-lg
-            " type="submit">Create Account</button>
+            name="cpassword" id="" placeholder="Confirm password" autocomplete="off" >
+        <button class="p-3 min-w-full mx-auto text-2xl font-bold text-center bg-amber-300 rounded-xl shadow-lg"
+            name="registerBtn" type="submit">Create Account</button>
         <div class="create-account-link text-center p-5">
             <a href="index.php" class="hover:font-bold">Registered already? Login Now</a>
         </div>
