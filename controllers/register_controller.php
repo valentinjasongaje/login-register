@@ -8,7 +8,7 @@ if (isset($_POST['registerBtn'])) {
     $fname = $_POST['fname'];
     $lname = $_POST['lname'];
     $password = $_POST['password'];
-    $cpassword = $_POST['password'];
+    $cpassword = $_POST['cpassword'];
 
 
     $db = new Database();

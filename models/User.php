@@ -19,13 +19,22 @@ class User
 
     public function register()
     {
-        echo $this->email;
+
         $validator = new Validator($this->email, $this->fname, $this->lname, $this->password, $this->cpassword, $this->conn);
-        $is_input_empty = $validator->check_input_empty();
+        $emptyInput = $validator->check_input_empty();
 
-        if ($is_input_empty) {
-
+        if ($emptyInput) {
+            echo "Empty Input";
         }
+        $passwordMatch = $validator->check_password_match();
+        if (!$passwordMatch) {
+            echo "did not match";
+        } else {
+            echo "match";
+        }
+
+
+        $email_exist = $validator->check_email_exist();
 
     }
 

@@ -11,11 +11,19 @@ class Validator extends User
         }
 
     }
+    public function check_password_match()
+    {
+        $passwordMatch = false;
+        if ($this->password === $this->cpassword) {
+            $passwordMatch = true;
+        }
+        return $passwordMatch;
+    }
     public function check_email_exist()
     {
         $exist = false;
 
-        $sql = "SELECT Email FROM users WHERE Email = {$this->email}";
+        $sql = "SELECT Email FROM users WHERE Email = '$this->email'";
         $result = mysqli_query($this->conn, $sql)->num_rows;
 
         if ($result !== 0) {
