@@ -8,13 +8,20 @@ class User
     public function __construct($email, $fname, $lname, $password, $cpassword, $conn)
     {
 
-        $this->email = $email;
-        $this->fname = $fname;
-        $this->lname = $lname;
-        $this->password = $password;
-        $this->cpassword = $cpassword;
+        $this->email = $this->filter_data($email);
+        $this->fname = $this->filter_data($fname);
+        $this->lname = $this->filter_data($lname);
+        $this->password = $this->filter_data($password);
+        $this->cpassword = $this->filter_data($cpassword);
         $this->conn = $conn;
 
+    }
+    public function filter_data($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
     }
 
     public function register()
@@ -42,7 +49,18 @@ class User
             header("Location: ../views/register.php?register_error= $error_message  $userDetails");
             exit();
         }
+        $this->password = md5($this->password);
+        $query = "INSERT INTO users (FirstName, LastName, Email, Password) VALUES('$this->fname', '$this->lname' , '$this->email', '$this->password')";
+        mysqli_query($this->conn, $query);
+        $affected_rows = mysqli_affected_rows($this->conn);
 
+        if ($affected_rows >= 1) {
+            header("Location: ../views/index.php?message=Successfully registered! Login now");
+            exit();
+        } else {
+
+            header("Location: ../views/register.php?register_error=Something Went Wrong ." . $userDetails);
+        }
     }
 
 }
