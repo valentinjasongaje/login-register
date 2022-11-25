@@ -80,7 +80,9 @@ class User
             header("Location: ../views/index.php?message=$error_message &email=$this->email");
             exit();
         }
-
+        $session = new Session($this->email, $this->conn);
+        $session->set_session();
+        header("Location: ../views/home.php?login_result=1");
     }
 
 }
