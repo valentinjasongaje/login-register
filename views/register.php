@@ -13,11 +13,11 @@
         </div>
         <?php } ?>
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="text" name="fname"
-            id="" placeholder="First Name" autocomplete="off">
+            id="" placeholder="First Name" autocomplete="off" value="<?php if(isset($_GET['fname'])){echo $_GET['fname'];} ?>">
         <input class="p-5 min-w-full mx-0 bg-yellow-100 rounded-xl flex items-center text-md" type="text" name="lname"
-            id="" placeholder="Last Name" autocomplete="off">
+            id="" placeholder="Last Name" autocomplete="off" value="<?php if(isset($_GET['lname'])){echo $_GET['lname'];} ?>">
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="email" name="email"
-            id="" placeholder="Email" autocomplete="off">
+            id="" placeholder="Email" autocomplete="off" value="<?php if(isset($_GET['email'])){echo $_GET['email'];} ?>">
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="password"
             name="password" id="" placeholder="Password" autocomplete="off">
         <input class="my-1 p-5 min-w-full  mx-0 bg-yellow-100 rounded-xl flex items-center" type="password"

@@ -22,24 +22,24 @@ class User
 
         $validator = new Validator($this->email, $this->fname, $this->lname, $this->password, $this->cpassword, $this->conn);
         $error = new ErrorMessage($this->email, $this->fname, $this->lname, $this->password, $this->cpassword);
-
+        $userDetails = "&fname=$this->fname &lname=$this->lname&email=$this->email";
         $emptyInput = $validator->check_input_empty();
 
         if ($emptyInput) {
             $error_message = $error->empty_input();
-            header("Location: ../views/register.php?register_error= $error_message");
+            header("Location: ../views/register.php?register_error= $error_message  $userDetails");
             exit();
         }
         $passwordMatch = $validator->check_password_match();
         if (!$passwordMatch) {
             $error_message = $error->passowrd_not_match();
-            header("Location: ../views/register.php?register_error= $error_message");
+            header("Location: ../views/register.php?register_error= $error_message $userDetails");
             exit();
         }
         $email_exist = $validator->check_email_exist();
         if ($email_exist) {
             $error_message = $error->email_exist();
-            header("Location: ../views/register.php?register_error= $error_message");
+            header("Location: ../views/register.php?register_error= $error_message  $userDetails");
             exit();
         }
 
