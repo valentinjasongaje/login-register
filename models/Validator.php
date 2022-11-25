@@ -6,10 +6,10 @@ class Validator extends User
     public function check_input_empty()
     {
         $empty = false;
-        if (empty($this->email) || empty($this->fname || empty($this->lname) || empty($this->fname) || empty($this->password) || empty($this->cpassword))) {
+        if (empty($this->fname) || empty($this->lname) || empty($this->email) || empty($this->password) || empty($this->cpassword)) {
             $empty = true;
         }
-
+        return $empty;
     }
     public function check_password_match()
     {
