@@ -22,14 +22,26 @@ class Validator extends User
     public function check_email_exist()
     {
         $exist = false;
-
-        $sql = "SELECT Email FROM users WHERE Email = '$this->email'";
-        $result = mysqli_query($this->conn, $sql)->num_rows;
+        $query = "SELECT Email FROM users WHERE Email = '$this->email'";
+        $result = mysqli_query($this->conn, $query)->num_rows;
 
         if ($result !== 0) {
             $exist = true;
         }
         return $exist;
+
+    }
+    public function check_credentials()
+    {
+        $credentialMatch = false;
+        $query = "SELECT * FROM users WHERE Email='$this->email'";
+        $user_count = mysqli_query($this->conn, $query);
+        $row = mysqli_fetch_assoc($user_count);
+
+        if ($row['Password'] === md5($this->password)) {
+            $credentialMatch = true;
+        }
+        return $credentialMatch;
 
     }
 }

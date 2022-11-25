@@ -2,7 +2,7 @@
 class ErrorMessage extends User
 {
 
-    public function __construct($email, $fname, $lname, $password, $cpassword)
+    public function __construct($email = null, $password = null, $fname = null, $lname = null, $cpassword = null)
     {
         $this->email = $email;
         $this->fname = $fname;
@@ -36,7 +36,15 @@ class ErrorMessage extends User
     }
     public function email_exist()
     {
-        return "This email <strong> ". $this->email ." </strong> is not available";
+        return "This email <strong> " . $this->email . " </strong> is not available";
+    }
+    public function email_not_exist()
+    {
+        return "Email doesn't exist";
+    }
+    public function unmatch_credential()
+    {
+        return "Password didn't match";
     }
 }
 

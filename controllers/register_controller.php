@@ -14,13 +14,13 @@ if (isset($_POST['registerBtn'])) {
     $db = new Database();
     $conn = $db->connect();
 
-    $user = new User($email, $fname, $lname, $password, $cpassword, $conn);
+    $user = new User($email, $password, $conn, $fname, $lname, $cpassword);
     $user->register();
 
 
 
 } else {
-    echo "Hmmm. ";
+    header("Location: ../views/register.php");
 }
 
 

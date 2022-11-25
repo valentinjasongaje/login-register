@@ -6,8 +6,8 @@
             <h1 class="text-2xl text-gray-700 text-center my-2">Fill up the form</h1>
         </div>
         <?php if (isset($_GET['register_error'])) { ?>
-        <div class="error-message">
-            <p class="p-3 max-w-md mx-auto text-center bg-red-300 rounded-xl flex">
+        <div class="notif_message">
+            <p class="p-3 mx-auto text-center bg-red-300  flex">
                 <?php echo $_GET['register_error'] ?>
             </p>
         </div>

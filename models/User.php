@@ -5,7 +5,7 @@ class User
 
     protected $email, $fname, $lname, $password, $cpassword, $conn;
 
-    public function __construct($email, $fname, $lname, $password, $cpassword, $conn)
+    public function __construct($email = null, $password = null, $conn, $fname = null, $lname = null, $cpassword = null)
     {
 
         $this->email = $this->filter_data($email);
@@ -14,7 +14,6 @@ class User
         $this->password = $this->filter_data($password);
         $this->cpassword = $this->filter_data($cpassword);
         $this->conn = $conn;
-
     }
     public function filter_data($data)
     {
@@ -27,8 +26,8 @@ class User
     public function register()
     {
 
-        $validator = new Validator($this->email, $this->fname, $this->lname, $this->password, $this->cpassword, $this->conn);
-        $error = new ErrorMessage($this->email, $this->fname, $this->lname, $this->password, $this->cpassword);
+        $validator = new Validator($this->email, $this->password, $this->conn, $this->fname, $this->lname, $this->cpassword);
+        $error = new ErrorMessage($this->email, $this->password, $this->fname, $this->lname, $this->cpassword);
         $userDetails = "&fname=$this->fname &lname=$this->lname&email=$this->email";
         $emptyInput = $validator->check_input_empty();
 
@@ -55,12 +54,33 @@ class User
         $affected_rows = mysqli_affected_rows($this->conn);
 
         if ($affected_rows >= 1) {
-            header("Location: ../views/index.php?message=Successfully registered! Login now");
+            header("Location: ../views/index.php?message_success=Successfully registered! Login now");
             exit();
         } else {
 
             header("Location: ../views/register.php?register_error=Something Went Wrong ." . $userDetails);
         }
+    }
+
+    public function login()
+    {
+        $validator = new Validator($this->email, $this->password, $this->conn);
+        $error = new ErrorMessage($this->email, $this->password);
+        $email_exist = $validator->check_email_exist();
+
+        if (!$email_exist) {
+            $error_message = $error->email_not_exist();
+            header("Location: ../views/index.php?message=$error_message &email=$this->email");
+            exit();
+        }
+
+        $credential_match = $validator->check_credentials();
+        if (!$credential_match) {
+            $error_message = $error->unmatch_credential();
+            header("Location: ../views/index.php?message=$error_message &email=$this->email");
+            exit();
+        }
+
     }
 
 }
