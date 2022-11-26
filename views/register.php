@@ -1,5 +1,11 @@
 <?php include "../views/header.php"; ?>
 
+<?php 
+session_start();
+if (isset($_SESSION['fname'])) {
+    header("location: ../views/home.php");
+}
+?>
 <form action="../controllers/register_controller.php" method="post">
     <div class="bg-gray-300 p-5 max-w-sm mx-auto my-16">
         <div class="header-form">

@@ -2,14 +2,23 @@
 
 session_start();
 
-if (isset($_GET['login_result'])) {
+if (isset($_SESSION['fname'])) {
     $firstName = $_SESSION['fname'];
     $lastName = $_SESSION['lname'];
 
-    echo "welcome " . $firstName . " " . $lastName;
-}
 
 
 ?>
+<div class="flex flex-row bg-gray-400 p-5">
+    <div class="">
+        <?php echo $firstName; ?>
+    </div>
+    <form action="../controllers/logout_controller.php" method="post">
+        <button class="" name="logout" type="submit">Log out</button>
+    </form>
 
+</div>
+<?php } else {
+    header("Location: ../views/index.php");
+} ?>
 <?php include "../views/footer.php" ?>

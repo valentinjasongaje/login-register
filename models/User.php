@@ -4,6 +4,7 @@ class User
 {
 
     protected $email, $fname, $lname, $password, $cpassword, $conn;
+    protected $loginStatus = false;
 
     public function __construct($email = null, $password = null, $conn, $fname = null, $lname = null, $cpassword = null)
     {
@@ -82,9 +83,14 @@ class User
         }
         $session = new Session($this->email, $this->conn);
         $session->set_session();
-        header("Location: ../views/home.php?login_result=1");
+        header("Location: ../views/home.php?login_status=true");
     }
-
+    public static function logout()
+    {
+        session_start();
+        session_unset();
+        session_destroy();
+    }
 }
 
 
