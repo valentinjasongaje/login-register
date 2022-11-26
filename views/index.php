@@ -1,7 +1,7 @@
 <?php include "header.php"; ?>
 <?php
 session_start();
-if (isset($_SESSION['fname'])) {
+if (isset($_SESSION['id'])) {
     header("location: ../views/home.php");
 }
 ?>

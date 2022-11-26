@@ -13,8 +13,9 @@ class Session
         $query = "SELECT * FROM users WHERE Email='$this->email'";
         $fetch = mysqli_query($this->conn, $query);
         $row = mysqli_fetch_assoc($fetch);
-
+        
         session_start();
+        $_SESSION['id'] = $row['id'];
         $_SESSION['email'] = $row['Email'];
         $_SESSION['fname'] = $row['FirstName'];
         $_SESSION['lname'] = $row['LastName'];

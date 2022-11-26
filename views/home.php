@@ -2,7 +2,7 @@
 
 session_start();
 
-if (isset($_SESSION['fname'])) {
+if (isset($_SESSION['id'])) {
     $firstName = $_SESSION['fname'];
     $lastName = $_SESSION['lname'];
 
