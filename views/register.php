@@ -1,9 +1,9 @@
-<?php include "../views/header.php"; ?>
+<?php include "header.php"; ?>
 
 <?php 
 session_start();
 if (isset($_SESSION['fname'])) {
-    header("location: ../views/home.php");
+    header("location: home.php");
 }
 ?>
 <form action="../controllers/register_controller.php" method="post">
@@ -40,4 +40,4 @@ if (isset($_SESSION['fname'])) {
 
 </form>
 
-<?php include "../views/footer.php"; ?>
+<?php include "footer.php"; ?>

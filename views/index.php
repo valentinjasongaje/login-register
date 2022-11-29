@@ -2,7 +2,7 @@
 <?php
 session_start();
 if (isset($_SESSION['id'])) {
-    header("location: ../views/home.php");
+    header("location: home.php");
 }
 ?>
 <form action="../controllers/login_controller.php" method="post">
