@@ -1,10 +1,13 @@
-<?php include "header.php";
+<?php 
+
+include 'header.php';
 
 session_start();
 
-if (!isset($_SESSION['id'])) {
-    header("Location: index.php");
-}
+if (!isset($_SESSION['id'])):
+    header('Location: ../index.php');
+endif;
+
 $firstName = $_SESSION['fname'];
 $lastName = $_SESSION['lname'];
 
@@ -19,4 +22,4 @@ $lastName = $_SESSION['lname'];
     <button class="p-4 outline-1" name="logout" type="submit">Log out</button>
 </form>
 
-<?php include "footer.php" ?>
+<?php include 'footer.php' ?>

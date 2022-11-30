@@ -3,7 +3,7 @@ module.exports = {
   content: [
     "./src/**/*.{html,js,php}",
     "./views/**/*.{html,js,php}",
-    "./views/home.php",
+    "index.php",
     "./models/**/*.{html,js,php}",
     "./controller/**/*.{html,js,php}"
   ],

@@ -1,6 +1,6 @@
 <?php
 
-include("../autoloader.php");
+include('../autoloader.php');
 
 if (isset($_POST['registerBtn'])) {
 
@@ -14,10 +14,20 @@ if (isset($_POST['registerBtn'])) {
     $db = new Database();
     $conn = $db->connect();
 
+
+
     $user = new User($email, $password, $conn, $fname, $lname, $cpassword);
-    $user->register();
+  
+    $userStatus = $user->register();
 
+    if ($userStatus !== true) {
+        $userDetails = '&fname=' . $fname . '&lname=' . $lname . '&email=' . $email;
+        header('Location: ../views/register.php?status=failed&message=' . $userStatus . $userDetails);
+        exit();
+    }
 
+   
+    header('Location: ../index.php?status=success&message=Successfully registered! Login now');
 
 } else {
     header("Location: ../views/register.php");
