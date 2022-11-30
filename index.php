@@ -1,10 +1,4 @@
 <?php include "./views/header.php"; ?>
-<?php
-session_start();
-if (isset($_SESSION['id'])):
-    header("location: ./views/home.php");
-endif
-?>
 <form action="./controllers/login_controller.php" method="post">
 
     <div class="bg-gray-300 p-5 max-w-sm mx-auto my-16">

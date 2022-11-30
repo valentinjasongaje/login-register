@@ -1,11 +1,5 @@
-<?php include "header.php"; ?>
-
-<?php
-session_start();
-if (isset($_SESSION['id'])) {
-    header("location: home.php");
-}
-?>
+<?php include 'header.php'; ?>
+<?php include '../autoloader.php'; ?>
 <form action="../controllers/register_controller.php" method="post">
 
     <div class="bg-gray-300 p-5 max-w-sm mx-auto my-16">
@@ -54,4 +48,4 @@ if (isset($_SESSION['id'])) {
 
 </form>
 
-<?php include "footer.php"; ?>
+<?php include 'footer.php' ?>

@@ -65,10 +65,35 @@ class User
         $session->set_session();
         return true;
     }
+  
+    public static function isLoginURL()
+    {
+        $loginURL = '/login-system/index.php';
+        return $_SERVER['PHP_SELF'] === $loginURL ? true : false;
+    }
+    public static function isHomeURL()
+    {
+        $homeURL = '/login-system/views/home.php';
+        return $_SERVER['PHP_SELF'] === $homeURL ? true : false;
+    }
+    public static function isRegistrationURL()
+    {
+        $registrationURL = '/login-system/views/register.php';
+        return $_SERVER['PHP_SELF'] === $registrationURL ? true : false;
+    }
+    public static function isCreatePostURL()
+    {
+        $createPostURL = '/login-system/views/create_post.php';
+        return $_SERVER['PHP_SELF'] === $createPostURL ? true : false;
+    }
     public static function logout()
     {
         session_start();
         session_unset();
         session_destroy();
+    }
+    public static function loggedIn()
+    {
+        return isset($_SESSION['id']) ? true : false;
     }
 }
