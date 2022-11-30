@@ -5,7 +5,7 @@ include 'header.php';
 session_start();
 
 if (!isset($_SESSION['id'])):
-    header('Location: ../index.php');
+    header('Location: index.php');
 endif;
 
 $firstName = $_SESSION['fname'];

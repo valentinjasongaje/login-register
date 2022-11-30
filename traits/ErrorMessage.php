@@ -1,16 +1,7 @@
 <?php
-class ErrorMessage extends User
+
+trait ErrorMessage
 {
-
-    public function __construct($email = null, $password = null, $fname = null, $lname = null, $cpassword = null)
-    {
-        $this->email = $email;
-        $this->fname = $fname;
-        $this->lname = $lname;
-        $this->password = $password;
-        $this->cpassword = $cpassword;
-    }
-
     public function empty_input()
     {
         if (empty($this->fname)) {
@@ -30,7 +21,7 @@ class ErrorMessage extends User
         }
     }
 
-    public function passowrd_not_match()
+    public function password_not_match()
     {
         return "Password did not match";
     }
@@ -47,6 +38,3 @@ class ErrorMessage extends User
         return "Password didn't match";
     }
 }
-
-
-?>

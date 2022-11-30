@@ -1,8 +1,7 @@
 <?php
 
-class Validator extends User
+trait Validator
 {
-
     public function check_input_empty()
     {
         $empty = false;
@@ -45,6 +44,3 @@ class Validator extends User
 
     }
 }
-
-
-?>

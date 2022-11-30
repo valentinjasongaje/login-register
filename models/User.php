@@ -2,10 +2,10 @@
 
 class User
 {
+    use Validator;
+    use ErrorMessage;
 
     protected $email, $fname, $lname, $password, $cpassword, $conn;
-    protected $loginStatus = false;
-
     public function __construct($email = null, $password = null, $conn, $fname = null, $lname = null, $cpassword = null)
     {
 
@@ -26,22 +26,19 @@ class User
 
     public function register()
     {
-        $validator = new Validator($this->email, $this->password, $this->conn, $this->fname, $this->lname, $this->cpassword);
-        $error = new ErrorMessage($this->email, $this->password, $this->fname, $this->lname, $this->cpassword);
-
-        $emptyInput = $validator->check_input_empty();
+        $emptyInput = $this->check_input_empty();
 
         if ($emptyInput) {
-            return $error->empty_input();
+            return $this->empty_input();
         }
 
-        $passwordMatch = $validator->check_password_match();
+        $passwordMatch = $this->check_password_match();
         if (!$passwordMatch) {
-            return $error->passowrd_not_match();
+            return $this->password_not_match();
         }
-        $email_exist = $validator->check_email_exist();
+        $email_exist = $this->check_email_exist();
         if ($email_exist) {
-            return $error->email_exist();
+            return $this->email_exist();
         }
 
         $this->password = md5($this->password);
@@ -53,17 +50,15 @@ class User
 
     public function login()
     {
-        $validator = new Validator($this->email, $this->password, $this->conn);
-        $error = new ErrorMessage($this->email, $this->password);
 
-        $email_exist = $validator->check_email_exist();
+        $email_exist = $this->check_email_exist();
         if (!$email_exist) {
-            return $error->email_not_exist();
+            return $this->email_not_exist();
         }
 
-        $credential_match = $validator->check_credentials();
+        $credential_match = $this->check_credentials();
         if (!$credential_match) {
-            return $error->unmatch_credential();
+            return $this->unmatch_credential();
         }
 
         $session = new Session($this->email, $this->conn);
@@ -77,7 +72,3 @@ class User
         session_destroy();
     }
 }
-
-
-
-?>
